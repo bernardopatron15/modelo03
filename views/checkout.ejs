@@ -26,8 +26,8 @@
   <div class="container">
     <!-- row -->
     <div class="row">
+      <!-- Billing Details -->
       <div class="col-md-7">
-        <!-- Billing Details -->
         <form method="post" action="/pedido/add">
           <div class="billing-details">
             <div class="section-title">
@@ -70,56 +70,53 @@
             </div>
             <% } %>
           </div>
-          <!-- Order Details -->
-
-          <input type="hidden" name="produto_id" value="<%= produto._id %>" required/>
-
-
-          <div class="col-md-5 order-details">
-            <div class="section-title text-center">
-              <h3 class="title">Seu Pedido</h3>
-            </div>
-            <div class="order-summary">
-              <div class="order-col">
-                <div><strong>PRODUTOS</strong></div>
-                <div><strong>TOTAL</strong></div>
-              </div>
-              <div class="order-products">
-                <div class="order-col">
-                  <div><%=produto.titulo%></div>
-                  <div><%=produto.preco%></div>
-                </div>
-              </div>
-              <div class="order-col">
-                <div>Frete</div>
-                <div><strong>Gratis</strong></div>
-              </div>
-              <div class="order-col">
-                <div><strong>TOTAL</strong></div>
-                <div><strong class="order-total">R$<%=produto.preco%></strong></div>
-              </div>
-            </div>
-
-            <div class="input-checkbox">
-              <input type="checkbox" id="terms" />
-              <label for="terms">
-                <span></span>
-                Eu aceito os <a href="#">termos e condições</a>
-              </label>
-            </div>
-            <button type="submit" class="primary-btn order-submit">Realizar Pedido</button>
-          </div>
-          <!-- /Order Details -->
-        </form>
-        <!-- /Billing Details -->
       </div>
+      <!-- /Billing Details -->
+
+      <!-- Order Details -->
+      <div class="col-md-5">
+        <div class="order-details">
+          <div class="section-title text-center">
+            <h3 class="title">Seu Pedido</h3>
+          </div>
+          <div class="order-summary">
+            <div class="order-col">
+              <div><strong>PRODUTOS</strong></div>
+              <div><strong>TOTAL</strong></div>
+            </div>
+            <div class="order-products">
+              <div class="order-col">
+                <div><%=produto.titulo%></div>
+                <div><%=produto.preco%></div>
+              </div>
+            </div>
+            <div class="order-col">
+              <div>Frete</div>
+              <div><strong>Gratis</strong></div>
+            </div>
+            <div class="order-col">
+              <div><strong>TOTAL</strong></div>
+              <div><strong class="order-total">R$<%=produto.preco%></strong></div>
+            </div>
+          </div>
+          <div class="input-checkbox">
+            <input type="checkbox" id="terms" />
+            <label for="terms">
+              <span></span>
+              Eu aceito os <a href="#">termos e condições</a>
+            </label>
+          </div>
+          <button type="submit" class="primary-btn order-submit">Realizar Pedido</button>
+        </div>
+      </div>
+      <!-- /Order Details -->
+      <input type="hidden" name="produto_id" value="<%= produto._id %>" required/>
+      </form>
     </div>
     <!-- /row -->
   </div>
   <!-- /container -->
 </div>
 <!-- /SECTION -->
-
-<!-- NEWSLETTER -->
 
 <%-include('./rodape2')-%>

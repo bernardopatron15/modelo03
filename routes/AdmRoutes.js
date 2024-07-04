@@ -35,7 +35,7 @@ routes.get("/logout", (req, res) => {
 });
 
 // Rotas de usuário
-routes.get("/adm/add",adm,admcontroller.abreadd);
+routes.get("/adm/add",admcontroller.abreadd);
 routes.post("/adm/add", upload.single("foto"), admcontroller.add);
 
 routes.get("/adm/lst",adm, admcontroller.listar);
