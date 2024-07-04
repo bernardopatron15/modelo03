@@ -1,0 +1,43 @@
+<%-include('../tela01') %>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="jumbotron jumbotron-fluid" style="background-color: #e1140a; color: white;">
+                <div class="container">
+                    <h1 class="display-4">Lista de Categorias</h1>
+                    <form method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="pesquisar" id="pesquisar" placeholder="Digite aqui o que você deseja pesquisar!">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Pesquisar</button>
+                    </form>
+                    <table class="table table-striped mt-4">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Título</th>
+                                <th scope="col">Editar</th>
+                                <th scope="col">Deletar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%Categorias.forEach(function(categoria){ %>
+                            <tr>
+                                <td><%=categoria._id %></td>
+                                <td><%=categoria.titulo %></td>
+                                <td>
+                                    <a href="/categoria/edt/<%=categoria._id %>" class="btn btn-primary btn-sm">Editar</a>
+                                </td>
+                                <td>
+                                    <a href="/categoria/del/<%=categoria._id %>" class="btn btn-danger btn-sm">Deletar</a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%-include('../rodape') %>

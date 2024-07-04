@@ -1,0 +1,58 @@
+<%- include('./cabecalho') %>
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-title text-center">
+          <h3 class="title">Carrinho de Compras</h3>
+        </div>
+      </div>
+    </div>
+    <!-- /row -->
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <table class="shopping-cart-table table">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Quantidade</th>
+              <th class="text-center">Total</th>
+              <th class="text-center"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% produtos.forEach(produto => { %>
+              <tr>
+                <td class="details">
+                  <h4><a href="#">Produto ID: <%= produto.id %></a></h4>
+                </td>
+                <td class="qty">
+                  <input class="input" type="number" value="<%= produto.quantidade %>">
+                </td>
+                <td class="total"><span class="total">R$ 0.00</span></td>
+                <td class="text-center"><button class="btn btn-danger">Remover</button></td>
+              </tr>
+            <% }) %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th class="empty" colspan="3"></th>
+              <th>TOTAL</th>
+              <th class="text-center">R$ 0.00</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<%- include('./rodape2') %>

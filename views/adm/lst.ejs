@@ -1,0 +1,31 @@
+<%-include('../tela02') %>
+<form method="post">
+    <input type="text" name="pesquisar" id="pesquisar" placeholder="Digite aqui o que você deseja pesquisar!">
+    <input type="submit" value="Pesquisar">
+</form>
+<table>
+    <tr>
+        <th>_id</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Criação</th>
+        <th>Edita</th>
+        <th>Deleta</th>
+    </tr>
+
+    <% Adms.forEach(function(adm) {  %>
+    <tr>
+        <td><%= adm._id %></td>
+        <td><%= adm.nome %></td>
+        <td><%= adm.email %></td>
+        <td><%= adm.criacao %></td>
+        <td>
+            <a href="/adm/edt/<%= adm._id %>">Editar</a>
+        </td>
+        <td>
+            <a href="/adm/del/<%= adm._id %>">Deletar</a>
+        </td>
+    </tr>
+    <% }) %>
+</table>
+<%-include('../rodape') %>

@@ -1,0 +1,16 @@
+<%-include('../tela02') %>
+<h1>Edita Usuário</h1>
+<form method="post" enctype="multipart/form-data">
+    Id: <input type="text" readonly name="id" id="id" value="<%=Usuario._id%>"><br />
+    Nome: <input type="text" name="nome" id="nome" value="<%=Usuario.nome%>"><br />
+    Email: <input type="email" name="email" id="email" value="<%=Usuario.email%>"><br />
+    Senha: <input type="password" name="senha" id="senha"><br />
+    CPF: <input type="cpf" name="cpf" id="cpf" value="<%=Usuario.cpf%>"><br />
+    Endereço: <input type="endereco" name="endereco" id="endereco" value="<%=Usuario.endereco%>"><br />
+    Cidade: <input type="cidade" name="cidade" id="cidade" value="<%=Usuario.cidade%>"><br />
+    Cep: <input type="cep" name="cep" id="cep" value="<%=Usuario.cep%>"><br />
+    Celular: <input type="celular" name="celular" id="celular" value="<%=Usuario.celular%>"><br />
+    Foto: <input type="file" name="foto" id="foto"><br />
+    <input type="submit" value="Editar">
+</form>
+<%-include('../rodape') %>

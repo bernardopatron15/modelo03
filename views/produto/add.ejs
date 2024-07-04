@@ -1,0 +1,44 @@
+<%-include('../tela01')-%>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="jumbotron jumbotron-fluid" style="background-color: #e1140a; color: white;">
+                <div class="container">
+                    <h1 class="display-4">Adicionar Produto</h1>
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="titulo">Título:</label>
+                            <input type="text" class="form-control" name="titulo" id="titulo" value="<%= Produto.titulo %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="descricao">Descrição:</label>
+                            <input type="text" class="form-control" name="descricao" id="descricao" value="<%= Produto.descricao %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="foto">Foto:</label>
+                            <input type="file" class="form-control-file" name="foto" id="foto">
+                        </div>
+                        <div class="form-group">
+                            <label for="preco">Preço:</label>
+                            <input type="number" class="form-control" name="preco" id="preco" value="<%= Produto.preco %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="precoantigo">Preço Antigo:</label>
+                            <input type="number" class="form-control" name="precoantigo" id="precoantigo" value="<%= Produto.precoantigo %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">Categoria:</label>
+                            <select class="form-control" name="categoria" id="categoria">
+                                <% Categorias.forEach(function(categoria) { %>
+                                    <option value="<%= categoria._id %>" <%= Produto.categoria && Produto.categoria._id.toString() === categoria._id.toString() ? 'selected' : '' %>><%= categoria.titulo %></option>
+                                <% }); %>
+                            </select> 
+                        </div>
+                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%-include('../rodape')-%>

@@ -1,0 +1,125 @@
+<%-include('./cabecalho')-%>
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="breadcrumb-header">Checkout</h3>
+        <ul class="breadcrumb-tree">
+          <li><a href="#">Home</a></li>
+          <li class="active">Checkout</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-7">
+        <!-- Billing Details -->
+        <form method="post" action="/pedido/add">
+          <div class="billing-details">
+            <div class="section-title">
+              <h3 class="title">Endereço</h3>
+            </div>
+            <div class="form-group">
+              <input class="input" type="text" name="nome" placeholder="Nome Completo" id="nome" value="<%= usuario ? usuario.nome : '' %>"/>
+            </div>
+            <div class="form-group">
+              <input class="input" type="text" name="cpf" placeholder="CPF" id="cpf" value="<%= usuario ? usuario.cpf : '' %>"/>
+            </div>
+            <div class="form-group">
+              <input class="input" type="email" name="email" placeholder="Email" id="email" value="<%= usuario ? usuario.email : '' %>"/>
+            </div>
+            <div class="form-group">
+              <input class="input" type="text" name="endereco" placeholder="Endereço" id="endereco" value="<%= usuario ? usuario.endereco : '' %>"/>
+            </div>
+            <div class="form-group">
+              <input class="input" type="text" name="cidade" placeholder="Cidade" id="cidade" value="<%= usuario ? usuario.cidade : '' %>"/>
+            </div>
+            <div class="form-group">
+              <input class="input" type="text" name="cep" placeholder="CEP" id="cep" value="<%= usuario ? usuario.cep : '' %>"/>
+            </div>
+            <div class="form-group">
+              <input class="input" type="tel" name="celular" placeholder="Celular" id="celular" value="<%= usuario ? usuario.celular : '' %>"/>
+            </div>
+            <% if (!usuario) { %>
+            <div class="form-group">
+              <div class="input-checkbox">
+                <input type="checkbox" id="create-account" checked/>
+                <label for="create-account">
+                  <span></span>
+                  Criar Conta
+                </label>
+                <div class="caption">
+                  <p>Você ainda não tem conta. Uma conta será criada com os dados fornecidos no pedido. Por favor, insira uma senha.</p>
+                  <input class="input" type="password" name="password" placeholder="Digite a sua Senha" required/>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+          <!-- Order Details -->
+
+          <input type="hidden" name="produto_id" value="<%= produto._id %>" required/>
+
+
+          <div class="col-md-5 order-details">
+            <div class="section-title text-center">
+              <h3 class="title">Seu Pedido</h3>
+            </div>
+            <div class="order-summary">
+              <div class="order-col">
+                <div><strong>PRODUTOS</strong></div>
+                <div><strong>TOTAL</strong></div>
+              </div>
+              <div class="order-products">
+                <div class="order-col">
+                  <div><%=produto.titulo%></div>
+                  <div><%=produto.preco%></div>
+                </div>
+              </div>
+              <div class="order-col">
+                <div>Frete</div>
+                <div><strong>Gratis</strong></div>
+              </div>
+              <div class="order-col">
+                <div><strong>TOTAL</strong></div>
+                <div><strong class="order-total">R$<%=produto.preco%></strong></div>
+              </div>
+            </div>
+
+            <div class="input-checkbox">
+              <input type="checkbox" id="terms" />
+              <label for="terms">
+                <span></span>
+                Eu aceito os <a href="#">termos e condições</a>
+              </label>
+            </div>
+            <button type="submit" class="primary-btn order-submit">Realizar Pedido</button>
+          </div>
+          <!-- /Order Details -->
+        </form>
+        <!-- /Billing Details -->
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- NEWSLETTER -->
+
+<%-include('./rodape2')-%>

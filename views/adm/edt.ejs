@@ -1,0 +1,10 @@
+<%-include('../tela02') %>
+<h1>Edita Adms</h1>
+<form method="post" enctype="multipart/form-data">
+    Id: <input type="text" readonly name="id" id="id" value="<%=Adm._id%>"><br />
+    Nome: <input type="text" name="nome" id="nome" value="<%=Adm.nome%>"><br />
+    Email: <input type="email" name="email" id="email" value="<%=Adm.email%>"><br />
+    Senha: <input type="password" name="senha" id="senha"><br />
+    <input type="submit" value="Editar">
+</form>
+<%-include('../rodape') %>
