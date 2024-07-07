@@ -1,0 +1,37 @@
+<%-include('./cabecalho')-%>
+
+
+<h1>Meus Pedidos</h1>
+
+<% if (pedidos.length > 0) { %>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID do Pedido</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Preço (R$)</th>
+                    <th scope="col">Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% pedidos.forEach(function(pedido) { %>
+                <tr>
+                    <td class="align-middle"><%= pedido._id %></td>
+                    <td class="align-middle"><%= pedido.produto ? pedido.produto.titulo : 'Não especificado' %></td>
+                    <td class="align-middle">R$ <%= pedido.produto ? pedido.produto.preco.toFixed(2) : '-' %></td>
+                    <td class="align-middle"><%= pedido.createdAt ? pedido.createdAt.toLocaleDateString() : 'Data não disponível' %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+<% } else { %>
+    <p>Você ainda não fez nenhum pedido.</p>
+<% } %>
+
+<%-include('./rodape2')-%>
+
+
+
+

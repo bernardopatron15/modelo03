@@ -49,7 +49,7 @@
         <div class="container">
           <ul class="header-links pull-left">
             <li>
-              <a href="wa.me/53999020356"><i class="fa fa-phone"></i> +053 999020356</a>
+              <a href="#"><i class="fa fa-phone"></i> +053 999020356</a>
             </li>
             <li>
               <a href="#"><i class="fa fa-envelope-o"></i> sac@lenovo.com</a>
@@ -60,25 +60,21 @@
           </ul>
           <ul class="header-links pull-right">
             <li>
-              <a href="#"><i class="fa fa-dollar"></i> BRL</a>
-            </li>
-            <ul class="header-links pull-right">
-              <li>
-                <% if (usuario) { %>
-                  <a href="/home"><i class="fa fa-user-o"></i> <%= usuario.nome %></a>
-                <% } else { %>
-                  <a href="/"><i class="fa fa-user-o"></i> Minha Conta</a>
-                <% } %>
-              </li>
               <% if (usuario) { %>
-                <li>
-                  <a href="/logout"><i class="fa fa-sign-out"></i> Sair</a>
-                </li>
+                <a href="/meus-pedidos"><i class="fa fa-user-o"></i> <%= usuario.nome %></a>
+              <% } else { %>
+                <a href="/"><i class="fa fa-user-o"></i> Minha Conta</a>
               <% } %>
-            </ul>
+            </li>
+            <% if (usuario) { %>
+              <li>
+                <a href="/logout"><i class="fa fa-sign-out"></i> Sair</a>
+              </li>
+            <% } %>
           </ul>
         </div>
       </div>
+      
       <!-- /TOP HEADER -->
 
       <!-- MAIN HEADER -->
@@ -98,20 +94,17 @@
             <!-- /LOGO -->
 
             <!-- SEARCH BAR -->
-            <div class="col-md-6">
-              <div class="header-search">
-                <form>
-                  <select class="input-select">
-                    <option value="0">Categorias</option>
-                    <option value="1">Category 01</option>
-                    <option value="1">Category 02</option>
-                  </select>
-                  <input class="input" placeholder="Search here" />
-                  <button class="search-btn">Search</button>
-                </form>
-              </div>
-            </div>
-            <!-- /SEARCH BAR -->
+<div class="col-md-6">
+  <div class="header-search">
+    <form action="/busca" method="GET"> <!-- Formulário configurado para enviar a pesquisa via GET para /busca -->
+      <input type="text" name="q" class="input" placeholder="Pesquise Aqui" /> <!-- Adicionado name="q" para enviar o termo de busca -->
+      <button type="submit" class="search-btn">Pesquisar</button> <!-- Botão de submit para enviar o formulário -->
+    </form>
+  </div>
+</div>
+<!-- /SEARCH BAR -->
+
+
 
             <!-- ACCOUNT -->
             <div class="col-md-3 clearfix">

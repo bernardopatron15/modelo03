@@ -1,5 +1,35 @@
 const Usuario = require("../model/Usuario");
 const Produto = require("../model/Produto");
+const Pedido = require("../model/Pedido");
+
+async function buscaProduto(req, res) {
+  try {
+    const { categoria, q } = req.query;
+
+    // Lógica para buscar produtos com base na categoria e/ou termo de busca
+    let filtro = {};
+    if (categoria && categoria !== '0') {
+      filtro.categoria = categoria;
+    }
+    if (q) {
+      filtro.$or = [
+        { titulo: { $regex: q, $options: 'i' } },
+        { descricao: { $regex: q, $options: 'i' } }
+      ];
+    }
+
+    const produtos = await Produto.find(filtro);
+
+    res.render('resultado-busca', {
+      produtos,
+      usuario: req.user // Supondo que o objeto de usuário esteja disponível em req.user
+    });
+  } catch (error) {
+    console.error('Erro ao buscar produtos:', error);
+    res.status(500).send('Erro ao buscar produtos. Por favor, tente novamente mais tarde.');
+  }
+}
+
 
 async function listarProdutosPorCategoria(req, res) {
   try {
@@ -62,8 +92,6 @@ function abrehome(req, res) {
     });
 }
 
-
-
 function renderHome(req, res) {
   res.render('home'); // Supondo que você queira renderizar a página 'home.ejs'
 }
@@ -85,7 +113,7 @@ async function abrecategoria(req, res) {
     });
   } catch (err) {
     res.send(err);
-  }admin: Boolean
+  }
 }
 
 async function agradecer(req, res) {
@@ -145,7 +173,7 @@ function add(req, res) {
     endereco: req.body.endereco,
     cidade: req.body.cidade,
     cep: req.body.cep,
-    celular: req.body.celular,admin: Boolean,
+    celular: req.body.celular,
     admin: false
   });
 
@@ -189,7 +217,7 @@ function del(req, res) {
     }
   });
 }
-admin: Boolean
+
 function abreedt(req, res) {
   Usuario.findById(req.params.id).then(function (usuario, err) {
     if (err) {
@@ -225,6 +253,15 @@ function edt(req, res) {
   });
 }
 
+async function listarPedidos(req, res) {
+  try {
+    const pedidos = await Pedido.find({ usuario: req.user._id }).populate('produto');
+    res.render('meus-pedidos', { pedidos, usuario: req.user });
+  } catch (err) {
+    res.send(err);
+  }
+}
+
 function logout(req, res) {
   res.redirect('/home');
 }
@@ -246,4 +283,6 @@ module.exports = {
   logout,
   agradecer,
   listarProdutosPorCategoria,
+  listarPedidos,
+  buscaProduto,
 };

@@ -5,6 +5,8 @@ const multer = require("multer");
 const upload = multer({ dest: "public/fotos" });
 const passport = require('../config/passport.js');
 
+routes.get('/busca', controller.buscaProduto);
+
 // Middleware para proteger rotas autenticadas
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -24,34 +26,32 @@ routes.get("/", controller.abrelogin);
 
 routes.get("/home", controller.abrehome);
 
-routes.get("/categoria", controller.abrecategoria);
+routes.get('/categoria/:categoriaId/produtos', controller.listarProdutosPorCategoria);
 
 routes.get("/checkout/:id", controller.abrecheckout);
 
 routes.get("/produto/:id", controller.abreproduto);
 
-routes.get('/obrigado', controller.agradecer);
+routes.get("/obrigado", controller.agradecer);
 
-// Rota para logout
-routes.get('/logout', (req, res) => {
-  req.logout(() => {
-    res.redirect('/home'); // Redireciona para a página inicial após o logout
-  });
-});
 
-// Rota para listar produtos por categoria
-routes.get('/categoria/:categoriaId/produtos', controller.listarProdutosPorCategoria);
+// Rotas autenticadas
+routes.get("/logout", ensureAuthenticated, controller.logout);
 
-// Rotas de usuário
-routes.get("/usuario/add", controller.abreadd);
-routes.post("/usuario/add", upload.single("foto"), controller.add);
+routes.get("/usuario/add", ensureAuthenticated, controller.abreadd);
 
-routes.get("/usuario/lst", controller.listar);
-routes.post("/usuario/lst", controller.filtrar);
+routes.post("/usuario/add", ensureAuthenticated, upload.single("foto"), controller.add);
 
-routes.get("/usuario/edt/:id", controller.abreedt);
-routes.post("/usuario/edt/:id", upload.single("foto"), controller.edt);
+routes.get("/usuario/lst", ensureAuthenticated, controller.listar);
 
-routes.get("/usuario/del/:id", controller.del);
+routes.post("/usuario/lst", ensureAuthenticated, controller.filtrar);
+
+routes.get("/usuario/del/:id", ensureAuthenticated, controller.del);
+
+routes.get("/usuario/edt/:id", ensureAuthenticated, controller.abreedt);
+
+routes.post("/usuario/edt/:id", ensureAuthenticated, upload.single("foto"), controller.edt);
+
+routes.get("/meus-pedidos", ensureAuthenticated, controller.listarPedidos);
 
 module.exports = routes;
