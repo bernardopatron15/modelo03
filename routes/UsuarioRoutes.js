@@ -34,6 +34,19 @@ routes.get("/produto/:id", controller.abreproduto);
 
 routes.get("/obrigado", controller.agradecer);
 
+routes.get("/frete", controller.frete);
+
+routes.get("/privacidade", controller.privacidade);
+
+routes.get("/sobrenos", controller.sobrenos);
+
+routes.get("/termos", controller.termos);
+
+routes.get("/ajuda", controller.ajuda);
+
+
+
+
 
 // Rotas autenticadas
 routes.get("/logout", ensureAuthenticated, controller.logout);

@@ -133,6 +133,91 @@ async function agradecer(req, res) {
   }
 }
 
+async function frete(req, res) {
+  try {
+    const produtos = await Produto.find({}).populate('categoria');
+    const produtosComDesconto = produtos.map(produto => {
+      const desconto = produto.getDescontoPercentual();
+      return { ...produto._doc, desconto };
+    });
+
+    res.render('frete', {
+      Produtos: produtosComDesconto,
+      usuario: req.user // Supondo que o objeto de usuário esteja disponível em req.user
+    });
+  } catch (err) {
+    res.send(err);
+  }
+}
+
+async function privacidade(req, res) {
+  try {
+    const produtos = await Produto.find({}).populate('categoria');
+    const produtosComDesconto = produtos.map(produto => {
+      const desconto = produto.getDescontoPercentual();
+      return { ...produto._doc, desconto };
+    });
+
+    res.render('privacidade', {
+      Produtos: produtosComDesconto,
+      usuario: req.user // Supondo que o objeto de usuário esteja disponível em req.user
+    });
+  } catch (err) {
+    res.send(err);
+  }
+}
+
+async function termos(req, res) {
+  try {
+    const produtos = await Produto.find({}).populate('categoria');
+    const produtosComDesconto = produtos.map(produto => {
+      const desconto = produto.getDescontoPercentual();
+      return { ...produto._doc, desconto };
+    });
+
+    res.render('termos', {
+      Produtos: produtosComDesconto,
+      usuario: req.user // Supondo que o objeto de usuário esteja disponível em req.user
+    });
+  } catch (err) {
+    res.send(err);
+  }
+}
+
+async function sobrenos(req, res) {
+  try {
+    const produtos = await Produto.find({}).populate('categoria');
+    const produtosComDesconto = produtos.map(produto => {
+      const desconto = produto.getDescontoPercentual();
+      return { ...produto._doc, desconto };
+    });
+
+    res.render('sobrenos', {
+      Produtos: produtosComDesconto,
+      usuario: req.user // Supondo que o objeto de usuário esteja disponível em req.user
+    });
+  } catch (err) {
+    res.send(err);
+  }
+}
+
+async function ajuda(req, res) {
+  try {
+    const produtos = await Produto.find({}).populate('categoria');
+    const produtosComDesconto = produtos.map(produto => {
+      const desconto = produto.getDescontoPercentual();
+      return { ...produto._doc, desconto };
+    });
+
+    res.render('ajuda', {
+      Produtos: produtosComDesconto,
+      usuario: req.user // Supondo que o objeto de usuário esteja disponível em req.user
+    });
+  } catch (err) {
+    res.send(err);
+  }
+}
+
 async function abreCheckout(req, res) {
   try {
       const produto = await Produto.findById(req.params.id).populate('categoria');
@@ -291,4 +376,9 @@ module.exports = {
   listarProdutosPorCategoria,
   listarPedidos,
   buscaProduto,
+  frete,
+  privacidade,
+  sobrenos,
+  termos,
+  ajuda
 };
