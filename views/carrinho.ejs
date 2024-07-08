@@ -39,9 +39,17 @@
             <div class="order-products">
               <% if (itensCarrinho.length > 0) { %>
                 <% itensCarrinho.forEach(item => { %>
-                  <div class="order-col">
-                    <div><%= item.produto.titulo %> (x<%= item.quantidade %>)</div>
-                    <div>R$<%= (item.preco * item.quantidade).toFixed(2) %></div>
+                  <div class="order-item">
+                    <div class="order-col">
+                      <div><%= item.produto.titulo %> (x<%= item.quantidade %>)</div>
+                      <div>R$<%= (item.preco * item.quantidade).toFixed(2) %></div>
+                    </div>
+                    <div class="order-col">
+                      <form method="post" action="/carrinho/remove" class="d-inline">
+                        <input type="hidden" name="produto_id" value="<%= item.produto._id %>">
+                        <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+                      </form>
+                    </div>
                   </div>
                 <% }) %>
               <% } else { %>
@@ -65,9 +73,8 @@
           </div>
           <% if (itensCarrinho.length > 0) { %>
             <a href="/checkout" class="primary-btn order-submit">Finalizar Compra</a>
-          <% } else { %>
-            <a href="/home" class="primary-btn order-submit">Voltar às Compras</a>
           <% } %>
+          <a href="/home" class="primary-btn order-submit float-right">Voltar às Compras</a>
         </div>
       </div>
     </div>
@@ -78,3 +85,10 @@
 <!-- /SECTION -->
 
 <%- include('./rodape2') %>
+
+<!-- CSS adicional para separar os botões de remover verticalmente -->
+<style>
+  .order-item {
+    margin-bottom: 10px; /* Espaçamento entre os itens do carrinho */
+  }
+</style>
