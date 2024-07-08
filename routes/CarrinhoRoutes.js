@@ -3,6 +3,7 @@ const { body } = require('express-validator');
 const routes = express.Router();
 const carrinhoController = require('../controller/carrinhoController');
 
+
 routes.get('/carrinho', carrinhoController.viewCart); // Visualizar o carrinho
 
 routes.post('/carrinho/add', 

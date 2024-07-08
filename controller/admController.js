@@ -26,7 +26,7 @@ function listar(req, res) {
     if (err) {
       res.send(err);
     } else {
-      res.render("adm/lst", { Usuarios: usuarios }); // Passando 'Usuarios' em vez de 'Adms'
+      res.render("adm/lst", { Adms: usuarios }); // Passando 'Usuarios' em vez de 'Adms'
     }
   });
 }

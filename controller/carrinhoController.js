@@ -1,6 +1,8 @@
 const { validationResult } = require('express-validator');
 const Produto = require('../model/Produto');
 
+
+
 // Função para visualizar o carrinho
 async function viewCart(req, res) {
     try {
