@@ -133,20 +133,26 @@ async function agradecer(req, res) {
   }
 }
 
-async function abrecheckout(req, res) {
+async function abreCheckout(req, res) {
   try {
-    const produto = await Produto.findById(req.params.id).populate('categoria');
-    const desconto = produto.getDescontoPercentual();
-    const produtoComDesconto = { ...produto._doc, desconto };
+      const produto = await Produto.findById(req.params.id).populate('categoria');
+      if (!produto) {
+          return res.status(404).send('Produto não encontrado.');
+      }
 
-    res.render('checkout', {
-      produto: produtoComDesconto,
-      usuario: req.user // Supondo que o objeto de usuário esteja disponível em req.user
-    });
+      const desconto = produto.getDescontoPercentual();
+      const produtoComDesconto = { ...produto._doc, desconto };
+
+      res.render('checkout', {
+          produto: produtoComDesconto,
+          usuario: req.user // Supondo que o objeto de usuário esteja disponível em req.user
+      });
   } catch (err) {
-    res.send(err);
+      res.status(500).send(err.message);
   }
 }
+
+
 
 async function abreproduto(req, res) {
   try {
@@ -226,7 +232,7 @@ function abreedt(req, res) {
       res.render("usuario/edt", { Usuario: usuario });
     }
   });
-}
+}  
 
 function edt(req, res) {
   Usuario.findById(req.params.id).then(function (usuario, err) {
@@ -277,7 +283,7 @@ module.exports = {
   abrelogin,
   abrehome,
   abrecategoria,
-  abrecheckout,
+  abreCheckout,
   abreproduto,
   renderHome,
   logout,

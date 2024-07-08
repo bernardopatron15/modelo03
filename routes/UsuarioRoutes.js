@@ -28,7 +28,7 @@ routes.get("/home", controller.abrehome);
 
 routes.get('/categoria/:categoriaId/produtos', controller.listarProdutosPorCategoria);
 
-routes.get("/checkout/:id", controller.abrecheckout);
+routes.get("/checkout/:id", controller.abreCheckout);
 
 routes.get("/produto/:id", controller.abreproduto);
 

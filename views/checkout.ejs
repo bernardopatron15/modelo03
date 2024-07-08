@@ -1,4 +1,4 @@
-<%-include('./cabecalho')-%>
+<%- include('./cabecalho') %>
 
 <!-- BREADCRUMB -->
 <div id="breadcrumb" class="section">
@@ -85,10 +85,14 @@
               <div><strong>TOTAL</strong></div>
             </div>
             <div class="order-products">
-              <div class="order-col">
-                <div><%=produto.titulo%></div>
-                <div><%=produto.preco%></div>
-              </div>
+              <% if (itensCarrinho.length > 0) { %>
+                <% itensCarrinho.forEach(item => { %>
+                  <div class="order-col">
+                    <div><%= item.produto.titulo %> (x<%= item.quantidade %>)</div>
+                    <div>R$<%= (item.preco * item.quantidade).toFixed(2) %></div>
+                  </div>
+                <% }) %>
+              <% } %>
             </div>
             <div class="order-col">
               <div>Frete</div>
@@ -96,7 +100,7 @@
             </div>
             <div class="order-col">
               <div><strong>TOTAL</strong></div>
-              <div><strong class="order-total">R$<%=produto.preco%></strong></div>
+              <div><strong class="order-total">R$<%= total.toFixed(2) %></strong></div>
             </div>
           </div>
           <div class="input-checkbox">
@@ -108,10 +112,9 @@
           </div>
           <button type="submit" class="primary-btn order-submit">Realizar Pedido</button>
         </div>
+        </form> <!-- Formulário fechado corretamente aqui -->
       </div>
       <!-- /Order Details -->
-      <input type="hidden" name="produto_id" value="<%= produto._id %>" required/>
-      </form>
     </div>
     <!-- /row -->
   </div>
@@ -119,4 +122,4 @@
 </div>
 <!-- /SECTION -->
 
-<%-include('./rodape2')-%>
+<%- include('./rodape2') %>

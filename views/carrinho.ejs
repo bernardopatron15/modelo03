@@ -1,5 +1,25 @@
 <%- include('./cabecalho') %>
 
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="breadcrumb-header">Carrinho de Compras</h3>
+        <ul class="breadcrumb-tree">
+          <li><a href="/">Home</a></li>
+          <li class="active">Carrinho</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
 <!-- SECTION -->
 <div class="section">
   <!-- container -->
@@ -7,46 +27,48 @@
     <!-- row -->
     <div class="row">
       <div class="col-md-12">
-        <div class="section-title text-center">
-          <h3 class="title">Carrinho de Compras</h3>
+        <div class="order-details">
+          <div class="section-title text-center">
+            <h3 class="title">Seu Carrinho</h3>
+          </div>
+          <div class="order-summary">
+            <div class="order-col">
+              <div><strong>PRODUTOS</strong></div>
+              <div><strong>TOTAL</strong></div>
+            </div>
+            <div class="order-products">
+              <% if (itensCarrinho.length > 0) { %>
+                <% itensCarrinho.forEach(item => { %>
+                  <div class="order-col">
+                    <div><%= item.produto.titulo %> (x<%= item.quantidade %>)</div>
+                    <div>R$<%= (item.preco * item.quantidade).toFixed(2) %></div>
+                  </div>
+                <% }) %>
+              <% } else { %>
+                <div class="order-col">
+                  <div>Seu carrinho está vazio</div>
+                </div>
+              <% } %>
+            </div>
+            <% if (itensCarrinho.length > 0) { %>
+              <div class="order-col">
+                <div>Frete</div>
+                <div><strong>Gratis</strong></div>
+              </div>
+              <div class="order-col">
+                <div><strong>TOTAL</strong></div>
+                <div><strong class="order-total">
+                  R$<%= total.toFixed(2) %>
+                </strong></div>
+              </div>
+            <% } %>
+          </div>
+          <% if (itensCarrinho.length > 0) { %>
+            <a href="/checkout" class="primary-btn order-submit">Finalizar Compra</a>
+          <% } else { %>
+            <a href="/home" class="primary-btn order-submit">Voltar às Compras</a>
+          <% } %>
         </div>
-      </div>
-    </div>
-    <!-- /row -->
-    <!-- row -->
-    <div class="row">
-      <div class="col-md-12">
-        <table class="shopping-cart-table table">
-          <thead>
-            <tr>
-              <th>Produto</th>
-              <th>Quantidade</th>
-              <th class="text-center">Total</th>
-              <th class="text-center"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% produtos.forEach(produto => { %>
-              <tr>
-                <td class="details">
-                  <h4><a href="#">Produto ID: <%= produto.id %></a></h4>
-                </td>
-                <td class="qty">
-                  <input class="input" type="number" value="<%= produto.quantidade %>">
-                </td>
-                <td class="total"><span class="total">R$ 0.00</span></td>
-                <td class="text-center"><button class="btn btn-danger">Remover</button></td>
-              </tr>
-            <% }) %>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th class="empty" colspan="3"></th>
-              <th>TOTAL</th>
-              <th class="text-center">R$ 0.00</th>
-            </tr>
-          </tfoot>
-        </table>
       </div>
     </div>
     <!-- /row -->

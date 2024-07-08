@@ -1,35 +1,33 @@
 const express = require('express');
 const { body } = require('express-validator');
 const routes = express.Router();
-const controller = require('../controller/carrinhoController');
-const autenticacao = require("../config/autenticacaoadm.js"); // Middleware para verificar se o usuário está autenticado
+const carrinhoController = require('../controller/carrinhoController');
 
-routes.get('/carrinho', autenticacao, controller.viewCart); // Visualizar o carrinho
+routes.get('/carrinho', carrinhoController.viewCart); // Visualizar o carrinho
 
 routes.post('/carrinho/add', 
-    autenticacao,
     [
         body('produto_id').isMongoId().withMessage('ID do produto inválido'),
         body('quantidade').isInt({ min: 1 }).withMessage('Quantidade deve ser no mínimo 1')
     ],
-    controller.addToCart
+    carrinhoController.addToCart
 ); // Adicionar item ao carrinho
 
 routes.post('/carrinho/update', 
-    autenticacao,
     [
         body('produto_id').isMongoId().withMessage('ID do produto inválido'),
         body('quantidade').isInt({ min: 1 }).withMessage('Quantidade deve ser no mínimo 1')
     ],
-    controller.updateCart
+    carrinhoController.updateCart
 ); // Atualizar quantidade de item no carrinho
 
 routes.post('/carrinho/remove', 
-    autenticacao,
     [
         body('produto_id').isMongoId().withMessage('ID do produto inválido')
     ],
-    controller.removeFromCart
+    carrinhoController.removeFromCart
 ); // Remover item do carrinho
+
+routes.get('/checkout', carrinhoController.abreCheckout); // Abrir página de checkout
 
 module.exports = routes;
