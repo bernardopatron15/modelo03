@@ -105,7 +105,7 @@
       <h3 class="product-name">
         <a href="/produto/<%= produto._id %>"><%= produto.titulo %></a>
       </h3>
-      <h4 class="product-price">R$ <%= produto.preco.toFixed(2) %></h4>
+      <h4 class="product-price">R$ <%= produto.preco %>,00</h4>
     </div>
     <div class="add-to-cart">
       <a href="/produto/<%= produto._id %>">
@@ -224,7 +224,7 @@
       <h3 class="product-name">
         <a href="/produto/<%= produto._id %>"><%= produto.titulo %></a>
       </h3>
-      <h4 class="product-price">R$ <%= produto.preco.toFixed(2) %></h4>
+      <h4 class="product-price">R$ <%= produto.preco %>,00</h4>
     </div>
     <div class="add-to-cart">
       <a href="/produto/<%= produto._id %>">
@@ -280,7 +280,7 @@
                 <h3 class="product-name">
                   <a href="/produto/<%=produto._id%>"><%=produto.titulo%></a>
                 </h3>
-                <h4 class="product-price"><%=produto.preco%><del class="product-old-price"><%=produto.precoantigo%></del></h4>
+                <h4 class="product-price">R$ <%= produto.preco %>,00<del class="product-old-price"><%=produto.precoantigo%>,00</del></h4>
               </div>
             </div>
             <!-- /product widget -->
@@ -314,7 +314,7 @@
                 <h3 class="product-name">
                   <a href="/produto/<%=produto._id%>"><%=produto.titulo%></a>
                 </h3>
-                <h4 class="product-price"><%=produto.preco%><del class="product-old-price"><%=produto.precoantigo%></del></h4>
+                <h4 class="product-price">R$ <%= produto.preco %>,00<del class="product-old-price"><%=produto.precoantigo%>,00</del></h4>
               </div>
             </div>
             <!-- /product widget -->
@@ -350,7 +350,7 @@
                 <h3 class="product-name">
                   <a href="/produto/<%=produto._id%>"><%=produto.titulo%></a>
                 </h3>
-                <h4 class="product-price"><%=produto.preco%><del class="product-old-price"><%=produto.precoantigo%></del></h4>
+                <h4 class="product-price">R$ <%= produto.preco %>,00<del class="product-old-price"><%=produto.precoantigo%>,00</del></h4>
               </div>
             </div>
             <!-- /product widget -->
