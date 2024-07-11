@@ -7,7 +7,8 @@ let ProdutoSchema = new Schema({
     preco: Number,
     precoantigo: Number,
     categoria: { type: Schema.Types.ObjectId, ref: 'Categoria' },
-    foto: String
+    foto: String,
+    mediaAvaliacao: { type: Number, default: 0 } // Adiciona campo para a média de avaliações
 });
 
 ProdutoSchema.methods.getDescontoPercentual = function() {

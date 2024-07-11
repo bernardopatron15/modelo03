@@ -4,6 +4,14 @@ const controller = require("../controller/usuarioController");
 const multer = require("multer");
 const upload = multer({ dest: "public/fotos" });
 const passport = require('../config/passport.js');
+const reviewController = require('../controller/reviewController');
+
+// Rotas para reviews
+routes.post('/produto/:id/review', reviewController.addReview);
+routes.get('/produto/:id/reviews', reviewController.listarReviews);
+routes.post('/:id/remover-avaliacao/:avaliacaId', reviewController.removerAvaliacao);
+
+
 
 routes.get('/busca', controller.buscaProduto);
 

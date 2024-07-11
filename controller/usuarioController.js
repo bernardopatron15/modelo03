@@ -1,6 +1,8 @@
 const Usuario = require("../model/Usuario");
 const Produto = require("../model/Produto");
 const Pedido = require("../model/Pedido");
+const Review = require('../model/Review');
+
 
 async function buscaProduto(req, res) {
   try {
@@ -245,8 +247,13 @@ async function abreproduto(req, res) {
     const desconto = produto.getDescontoPercentual();
     const produtoComDesconto = { ...produto._doc, desconto };
 
+    // Busca as avaliações do produto
+    const reviews = await Review.find({ produto: produto._id });
+
+
     res.render('produto', {
       produto: produtoComDesconto,
+      reviews: reviews, // Passando as avaliações encontradas para a view
       usuario: req.user // Supondo que o objeto de usuário esteja disponível em req.user
     });
   } catch (err) {

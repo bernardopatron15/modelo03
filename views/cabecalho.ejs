@@ -66,6 +66,11 @@
                 <a href="/"><i class="fa fa-user-o"></i> Minha Conta</a>
               <% } %>
             </li>
+            <li>
+              <% if (typeof usuario != "undefined" && usuario.admin) { %>
+                <a href="/pedido/lst"><i class="fa-list-ul"></i> Gerenciar </a>
+              <% } %>
+            </li>
             <% if (usuario) { %>
               <li>
                 <a href="/logout"><i class="fa fa-sign-out"></i> Sair</a>
