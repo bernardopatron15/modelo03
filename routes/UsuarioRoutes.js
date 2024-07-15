@@ -11,7 +11,7 @@ const adm = require("../config/autenticacaoadm.js");
 // Rotas para reviews
 routes.post('/produto/:id/review', reviewController.addReview);
 routes.get('/produto/:id/reviews', reviewController.listarReviews);
-routes.post('/:id/remover-avaliacao/:avaliacaId', reviewController.removerAvaliacao);
+routes.post('/produto/:id/remover-avaliacao/:avaliacaoId', reviewController.removerAvaliacao);
 
 
 

@@ -40,25 +40,39 @@ async function removerAvaliacao(req, res) {
         const avaliacaoId = req.params.avaliacaoId;
         const produtoId = req.params.id;
 
+        console.log(`Tentando remover a avaliação com ID: ${avaliacaoId} para o produto com ID: ${produtoId}`);
+
         // Remover a avaliação pelo ID
-        await Review.findByIdAndDelete(avaliacaoId);
+        const reviewRemovida = await Review.findByIdAndDelete(avaliacaoId);
+
+        if (!reviewRemovida) {
+            console.error(`Avaliação com ID: ${avaliacaoId} não encontrada.`);
+            return res.status(404).send('Avaliação não encontrada.');
+        }
+
+        console.log(`Avaliação com ID: ${avaliacaoId} removida com sucesso.`);
 
         // Recalcular a média de avaliação do produto após remover a avaliação
         const reviews = await Review.find({ produto: produtoId });
+
         const totalReviews = reviews.length;
         const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0);
         const mediaAvaliacao = totalReviews > 0 ? totalRating / totalReviews : 0;
 
+        console.log(`Nova média de avaliação calculada: ${mediaAvaliacao}`);
+
         // Atualizar a média de avaliação no documento do Produto
         await Produto.findByIdAndUpdate(produtoId, { mediaAvaliacao });
+
+        console.log(`Média de avaliação do produto com ID: ${produtoId} atualizada para: ${mediaAvaliacao}`);
 
         // Redirecionar de volta para a página do produto
         res.redirect(`/produto/${produtoId}`);
     } catch (err) {
-        console.error(err);
+        console.error('Erro ao remover a avaliação:', err);
         res.status(500).send('Erro ao remover a avaliação.');
     }
-}   
+}
 
 module.exports = {
     addReview,
