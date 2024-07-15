@@ -1,16 +1,50 @@
-<%-include('../tela02') %>
-<h1>Edita Usuário</h1>
-<form method="post" enctype="multipart/form-data">
-    Id: <input type="text" readonly name="id" id="id" value="<%=Usuario._id%>"><br />
-    Nome: <input type="text" name="nome" id="nome" value="<%=Usuario.nome%>"><br />
-    Email: <input type="email" name="email" id="email" value="<%=Usuario.email%>"><br />
-    Senha: <input type="password" name="senha" id="senha"><br />
-    CPF: <input type="cpf" name="cpf" id="cpf" value="<%=Usuario.cpf%>"><br />
-    Endereço: <input type="endereco" name="endereco" id="endereco" value="<%=Usuario.endereco%>"><br />
-    Cidade: <input type="cidade" name="cidade" id="cidade" value="<%=Usuario.cidade%>"><br />
-    Cep: <input type="cep" name="cep" id="cep" value="<%=Usuario.cep%>"><br />
-    Celular: <input type="celular" name="celular" id="celular" value="<%=Usuario.celular%>"><br />
-    Foto: <input type="file" name="foto" id="foto"><br />
-    <input type="submit" value="Editar">
-</form>
-<%-include('../rodape') %>
+<%- include('../tela01') %>
+
+<div class="container my-4">
+    <h1 class="text-center mb-4">Editar Usuário</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="id">ID:</label>
+            <input type="text" class="form-control" readonly name="id" id="id" value="<%= Usuario._id %>">
+        </div>
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" name="nome" id="nome" value="<%= Usuario.nome %>">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" name="email" id="email" value="<%= Usuario.email %>">
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" class="form-control" name="senha" id="senha">
+        </div>
+        <div class="form-group">
+            <label for="cpf">CPF:</label>
+            <input type="text" class="form-control" name="cpf" id="cpf" value="<%= Usuario.cpf %>">
+        </div>
+        <div class="form-group">
+            <label for="endereco">Endereço:</label>
+            <input type="text" class="form-control" name="endereco" id="endereco" value="<%= Usuario.endereco %>">
+        </div>
+        <div class="form-group">
+            <label for="cidade">Cidade:</label>
+            <input type="text" class="form-control" name="cidade" id="cidade" value="<%= Usuario.cidade %>">
+        </div>
+        <div class="form-group">
+            <label for="cep">CEP:</label>
+            <input type="text" class="form-control" name="cep" id="cep" value="<%= Usuario.cep %>">
+        </div>
+        <div class="form-group">
+            <label for="celular">Celular:</label>
+            <input type="text" class="form-control" name="celular" id="celular" value="<%= Usuario.celular %>">
+        </div>
+        <div class="form-group">
+            <label for="foto">Foto:</label>
+            <input type="file" class="form-control-file" name="foto" id="foto">
+        </div>
+        <button type="submit" class="btn btn-primary">Editar</button>
+    </form>
+</div>
+
+<%- include('../rodape') %>

@@ -1,4 +1,4 @@
-<%-include('../tela01') %>
+<%- include('../tela01') %>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -11,7 +11,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Pesquisar</button>
                     </form>
-                    <table class="table table-striped mt-4">
+                    <table class="table table-striped mt-4" style="color: white;">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
@@ -21,15 +21,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%Categorias.forEach(function(categoria){ %>
+                            <% Categorias.forEach(function(categoria) { %>
                             <tr>
-                                <td><%=categoria._id %></td>
-                                <td><%=categoria.titulo %></td>
+                                <td><%= categoria._id %></td>
+                                <td><%= categoria.titulo %></td>
                                 <td>
-                                    <a href="/categoria/edt/<%=categoria._id %>" class="btn btn-primary btn-sm">Editar</a>
+                                    <a href="/categoria/edt/<%= categoria._id %>" class="btn btn-primary btn-sm">Editar</a>
                                 </td>
                                 <td>
-                                    <a href="/categoria/del/<%=categoria._id %>" class="btn btn-danger btn-sm">Deletar</a>
+                                    <a href="/categoria/del/<%= categoria._id %>" class="btn btn-danger btn-sm">Deletar</a>
                                 </td>
                             </tr>
                             <% }) %>
@@ -40,4 +40,4 @@
         </div>
     </div>
 </div>
-<%-include('../rodape') %>
+<%- include('../rodape') %>

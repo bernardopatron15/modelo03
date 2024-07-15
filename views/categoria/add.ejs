@@ -1,20 +1,24 @@
-<%-include('../tela01')-%>
-<div class="container">
+<%- include('../tela01') %>
+
+<div class="container my-5">
     <div class="row">
-        <div class="col">
-            <div class="jumbotron jumbotron-fluid" style="background-color: #e1140a; color: white;">
-                <div class="container">
-                    <h1 class="display-4">Adicionar Categoria</h1>
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card shadow-lg border-0">
+                <div class="card-header text-white" style="background-color: #e1140a;">
+                    <h2 class="text-center mb-0">Adicionar Nova Categoria</h2>
+                </div>
+                <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="titulo">Título:</label>
-                            <input type="text" class="form-control" name="titulo" id="titulo">
+                            <label for="titulo">Título da Categoria:</label>
+                            <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Insira o título da categoria">
                         </div>
-                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                        <button type="submit" class="btn btn-block mt-4" style="background-color: #e1140a; color: white;">Adicionar Categoria</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<%-include('../rodape')-%>
+
+<%- include('../rodape') %>

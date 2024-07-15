@@ -14,6 +14,6 @@ routes.post('/produto/lst', controller.filtrar);
 routes.get('/produto/edt/:id',adm, controller.abreedt);
 routes.post('/produto/edt/:id', upload.single('foto'), controller.edt);
 
-routes.get('/produto/del/:id', controller.del);
+routes.get('/produto/del/:id',adm, controller.del);
 
 module.exports = routes;

@@ -1,44 +1,55 @@
-<%-include('../tela01')-%>
-<div class="container">
+<%- include('../tela01') %>
+
+<div class="container my-5">
     <div class="row">
-        <div class="col">
-            <div class="jumbotron jumbotron-fluid" style="background-color: #e1140a; color: white;">
-                <div class="container">
-                    <h1 class="display-4">Adicionar Produto</h1>
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card shadow-lg border-0">
+                <div class="card-header text-white" style="background-color: #e1140a;">
+                    <h2 class="text-center mb-0">Adicionar Produto</h2>
+                </div>
+                <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="titulo">Título:</label>
-                            <input type="text" class="form-control" name="titulo" id="titulo" value="<%= Produto.titulo %>">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="titulo">Título:</label>
+                                <input type="text" class="form-control" name="titulo" id="titulo">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="preco">Preço:</label>
+                                <input type="number" class="form-control" name="preco" id="preco">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="descricao">Descrição:</label>
-                            <input type="text" class="form-control" name="descricao" id="descricao" value="<%= Produto.descricao %>">
+                            <textarea class="form-control" name="descricao" id="descricao" rows="3"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="precoantigo">Preço Antigo:</label>
+                                <input type="number" class="form-control" name="precoantigo" id="precoantigo">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="categoria">Categoria:</label>
+                                <select class="form-control" name="categoria" id="categoria">
+                                    <% Categorias.forEach(function(categoria) { %>
+                                        <option value="<%= categoria._id %>"><%= categoria.titulo %></option>
+                                    <% }); %>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="foto">Foto:</label>
-                            <input type="file" class="form-control-file" name="foto" id="foto">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="foto" id="foto">
+                                <label class="custom-file-label" for="foto">Escolher arquivo</label>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="preco">Preço:</label>
-                            <input type="number" class="form-control" name="preco" id="preco" value="<%= Produto.preco %>">
-                        </div>
-                        <div class="form-group">
-                            <label for="precoantigo">Preço Antigo:</label>
-                            <input type="number" class="form-control" name="precoantigo" id="precoantigo" value="<%= Produto.precoantigo %>">
-                        </div>
-                        <div class="form-group">
-                            <label for="categoria">Categoria:</label>
-                            <select class="form-control" name="categoria" id="categoria">
-                                <% Categorias.forEach(function(categoria) { %>
-                                    <option value="<%= categoria._id %>" <%= Produto.categoria && Produto.categoria._id.toString() === categoria._id.toString() ? 'selected' : '' %>><%= categoria.titulo %></option>
-                                <% }); %>
-                            </select> 
-                        </div>
-                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                        <button type="submit" class="btn btn-block mt-4" style="background-color: #e1140a; color: white;">Adicionar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<%-include('../rodape')-%>
+
+<%- include('../rodape') %>

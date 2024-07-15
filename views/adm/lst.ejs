@@ -1,31 +1,41 @@
-<%-include('../tela02') %>
-<form method="post">
-    <input type="text" name="pesquisar" id="pesquisar" placeholder="Digite aqui o que você deseja pesquisar!">
-    <input type="submit" value="Pesquisar">
-</form>
-<table>
-    <tr>
-        <th>_id</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Criação</th>
-        <th>Edita</th>
-        <th>Deleta</th>
-    </tr>
+<%- include('../tela01') %>
 
-    <% Adms.forEach(function(adm) {  %>
-    <tr>
-        <td><%= adm._id %></td>
-        <td><%= adm.nome %></td>
-        <td><%= adm.email %></td>
-        <td><%= adm.criacao %></td>
-        <td>
-            <a href="/adm/edt/<%= adm._id %>">Editar</a>
-        </td>
-        <td>
-            <a href="/adm/del/<%= adm._id %>">Deletar</a>
-        </td>
-    </tr>
-    <% }) %>
-</table>
-<%-include('../rodape') %>
+<div class="container my-4">
+    <h1 class="text-center mb-4">Lista de Administradores</h1>
+    <form method="post" class="form-inline justify-content-center mb-4">
+        <input type="text" name="pesquisar" id="pesquisar" class="form-control mr-2" placeholder="Digite aqui o que você deseja pesquisar!">
+        <button type="submit" class="btn btn-primary">Pesquisar</button>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>_id</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Criação</th>
+                    <th>Edita</th>
+                    <th>Deleta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% Adms.forEach(function(adm) { %>
+                <tr>
+                    <td><%= adm._id %></td>
+                    <td><%= adm.nome %></td>
+                    <td><%= adm.email %></td>
+                    <td><%= adm.criacao %></td>
+                    <td>
+                        <a href="/adm/edt/<%= adm._id %>" class="btn btn-warning btn-sm">Editar</a>
+                    </td>
+                    <td>
+                        <a href="/adm/del/<%= adm._id %>" class="btn btn-danger btn-sm">Deletar</a>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('../rodape') %>

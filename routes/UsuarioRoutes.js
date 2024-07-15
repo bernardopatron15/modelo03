@@ -5,6 +5,8 @@ const multer = require("multer");
 const upload = multer({ dest: "public/fotos" });
 const passport = require('../config/passport.js');
 const reviewController = require('../controller/reviewController');
+const adm = require("../config/autenticacaoadm.js");
+
 
 // Rotas para reviews
 routes.post('/produto/:id/review', reviewController.addReview);
@@ -63,13 +65,13 @@ routes.get("/usuario/add", ensureAuthenticated, controller.abreadd);
 
 routes.post("/usuario/add", ensureAuthenticated, upload.single("foto"), controller.add);
 
-routes.get("/usuario/lst", ensureAuthenticated, controller.listar);
+routes.get("/usuario/lst",adm, ensureAuthenticated, controller.listar);
 
 routes.post("/usuario/lst", ensureAuthenticated, controller.filtrar);
 
-routes.get("/usuario/del/:id", ensureAuthenticated, controller.del);
+routes.get("/usuario/del/:id",adm, ensureAuthenticated, controller.del);
 
-routes.get("/usuario/edt/:id", ensureAuthenticated, controller.abreedt);
+routes.get("/usuario/edt/:id",adm, ensureAuthenticated, controller.abreedt);
 
 routes.post("/usuario/edt/:id", ensureAuthenticated, upload.single("foto"), controller.edt);
 
